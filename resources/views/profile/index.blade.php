@@ -4,20 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 ">
-            <div class="list-group ">
-                <a href="/profile"
-                    class="list-group-item list-group-item-action <?=(Route::current()->uri() == '/profile' ? 'active':'')?>">
-                    Profile
-                </a>
-                <a href="/profile/edit" class="list-group-item list-group-item-action">
-                    Edit Profile
-                </a>
-                <a href="/profile/change-password" class="list-group-item list-group-item-action">
-                    Change password
-                </a>
-
-
-            </div>
+            @include('profile.shared.side-nav')
         </div>
         <div class="col-md-9">
             <div class="card">
@@ -56,6 +43,15 @@
                             </p>
                             <p class="h5 pb-1">
                                 User Type: {{ $user->account_type_text($user->user_type) }}
+                                @if ($user->user_type == 'driver')
+                                @if ($user->driver_license_file_path != null)
+                                <a href="/{{$user->driver_license_file_path}}" target="_blank"
+                                    rel="noopener noreferrer">See/Download Driver License File</a>
+                                @else
+                                <p class="text-danger font-weight-bold">Upload your driver license now! to upload <a
+                                        href="/profile/driver-license">click here</a></p>
+                                @endif
+                                @endif
                             </p>
                             <p class="h5 pb-1">
                                 Account Status: {{ $user->active_account == true ? 'Active' : 'Deactivated' }}

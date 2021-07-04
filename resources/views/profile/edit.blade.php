@@ -4,20 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 ">
-            <div class="list-group ">
-                <a href="/profile"
-                    class="list-group-item list-group-item-action <?=(Route::current()->uri() == '/profile' ? 'active':'')?>">
-                    Profile
-                </a>
-                <a href="/profile/edit" class="list-group-item list-group-item-action">
-                    Edit Profile
-                </a>
-                <a href="/profile/change-password" class="list-group-item list-group-item-action">
-                    Change password
-                </a>
-
-
-            </div>
+            @include('profile.shared.side-nav')
         </div>
         <div class="col-md-9">
             <div class="card">

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\DriverLicenseController;
 use App\Http\Controllers\MessageController;
 
 /*
@@ -33,6 +34,8 @@ Route::get('/profile/edit', [ProfileController::class, 'edit']);
 Route::patch('/profile/{profile}', [ProfileController::class, 'update']);
 Route::get('/profile/change-password', [ChangepasswordController::class, 'index']);
 Route::post('/profile/change-password', [ChangepasswordController::class, 'store']);
+Route::get('/profile/driver-license', [DriverLicenseController::class, 'index']);
+Route::post('/profile/driver-license', [DriverLicenseController::class, 'store']);
 
 // Report and Feedback Routes
 
