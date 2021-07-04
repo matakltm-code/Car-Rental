@@ -69,11 +69,16 @@
                             <a class="nav-link" href="/account/login-history">{{ __('Login History') }}</a>
                         </li>
                         @elseif (auth()->user()->is_manager)
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Report') }}</a>
+                        <li
+                            class="nav-item <?=(Route::current()->uri() == 'm/view-report-from-rental-officer' ? 'active':'')?>">
+                            <a class="nav-link" href="/m/view-report-from-rental-officer">{{ __('View Report') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Feedback') }}</a>
+                        <li
+                            class="nav-item <?=(Route::current()->uri() == 'm/send-report-for-rental-officer' ? 'active':'')?>">
+                            <a class="nav-link" href="/m/send-report-for-rental-officer">{{ __('Send Report') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == 'm/feedback-from-customer' ? 'active':'')?>">
+                            <a class="nav-link" href="/m/feedback-from-customer">{{ __('View Feedback') }}</a>
                         </li>
                         @elseif (auth()->user()->is_rentalofficer)
                         <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
@@ -82,15 +87,23 @@
                         <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
                             <a class="nav-link" href="/#">{{ __('Car Reservation') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Report') }}</a>
+                        <li
+                            class="nav-item <?=(Route::current()->uri() == 'r/send-report-for-manager' ? 'active':'')?>">
+                            <a class="nav-link" href="/r/send-report-for-manager">{{ __('Send Report') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == 'r/report-from-manager' ? 'active':'')?>">
+                            <a class="nav-link" href="/r/report-from-manager">{{ __('View Manager Reports') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == 'r/report-from-driver' ? 'active':'')?>">
+                            <a class="nav-link" href="/r/report-from-driver">{{ __('View Driver Reports') }}</a>
                         </li>
                         @elseif (auth()->user()->is_driver)
                         <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
                             <a class="nav-link" href="/#">{{ __('Notifications') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Report') }}</a>
+                        <li
+                            class="nav-item <?=(Route::current()->uri() == 'd/send-report-rental-officer' ? 'active':'')?>">
+                            <a class="nav-link" href="/d/send-report-rental-officer">{{ __('Send Report') }}</a>
                         </li>
                         @elseif (auth()->user()->is_customer)
                         <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
@@ -99,8 +112,8 @@
                         <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
                             <a class="nav-link" href="/#">{{ __('Reserved Cars') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Feedback') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'c/send-feedback' ? 'active':'')?>">
+                            <a class="nav-link" href="/c/send-feedback">{{ __('Send Feedback') }}</a>
                         </li>
                         @endif
 
