@@ -94,4 +94,10 @@ class User extends Authenticatable
 
         return $result;
     }
+
+
+    public function booked_cars()
+    {
+        return $this->hasMany(BookedCar::class, 'user_id', 'id');
+    }
 }

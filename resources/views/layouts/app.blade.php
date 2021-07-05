@@ -59,6 +59,9 @@
 
                         {{-- Check if the user is admin --}}
                         @if (auth()->user()->is_admin)
+                        <li class="nav-item <?=(Route::current()->uri() == '/' ? 'active':'')?>">
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                        </li>
                         <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
                             <a class="nav-link" href="#">{{ __('Reservation History') }}</a>
                         </li>
@@ -69,6 +72,9 @@
                             <a class="nav-link" href="/account/login-history">{{ __('Login History') }}</a>
                         </li>
                         @elseif (auth()->user()->is_manager)
+                        <li class="nav-item <?=(Route::current()->uri() == '/' ? 'active':'')?>">
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                        </li>
                         <li
                             class="nav-item <?=(Route::current()->uri() == 'm/view-report-from-rental-officer' ? 'active':'')?>">
                             <a class="nav-link" href="/m/view-report-from-rental-officer">{{ __('View Report') }}</a>
@@ -81,8 +87,11 @@
                             <a class="nav-link" href="/m/feedback-from-customer">{{ __('View Feedback') }}</a>
                         </li>
                         @elseif (auth()->user()->is_rentalofficer)
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Cars Management') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == '/' ? 'active':'')?>">
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == 'car-management' ? 'active':'')?>">
+                            <a class="nav-link" href="/car-management">{{ __('Cars Management') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
                             <a class="nav-link" href="/#">{{ __('Car Reservation') }}</a>
@@ -98,6 +107,9 @@
                             <a class="nav-link" href="/r/report-from-driver">{{ __('View Driver Reports') }}</a>
                         </li>
                         @elseif (auth()->user()->is_driver)
+                        <li class="nav-item <?=(Route::current()->uri() == '/' ? 'active':'')?>">
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                        </li>
                         <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
                             <a class="nav-link" href="/#">{{ __('Notifications') }}</a>
                         </li>
@@ -106,8 +118,11 @@
                             <a class="nav-link" href="/d/send-report-rental-officer">{{ __('Send Report') }}</a>
                         </li>
                         @elseif (auth()->user()->is_customer)
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Cars') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == '/' ? 'active':'')?>">
+                            <a class="nav-link" href="/">{{ __('Home') }}</a>
+                        </li>
+                        <li class="nav-item <?=(Route::current()->uri() == 'cars' ? 'active':'')?>">
+                            <a class="nav-link" href="/cars">{{ __('Cars') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
                             <a class="nav-link" href="/#">{{ __('Reserved Cars') }}</a>
@@ -145,7 +160,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="pt-4">
             @include('inc.messages')
             @yield('content')
         </main>

@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarManagementController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DriverLicenseController;
 use App\Http\Controllers\MessageController;
+use App\Models\Car;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +25,16 @@ use App\Http\Controllers\MessageController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $cars = Car::orderBy('created_at', 'DESC')->paginate(10);
+    return view('welcome', [
+        'cars' => $cars
+    ]);
 });
+
+Route::get('/cars', [CarController::class, 'index']);
+Route::post('/cars', [CarController::class, 'store']); // Reserve/Book a car
+Route::get('/cars/{car}', [CarController::class, 'show']);
+
 
 Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -59,6 +70,14 @@ Route::get('/m/feedback-from-customer', [MessageController::class, 'view_feedbac
 
 
 // rentalofficer
+Route::get('/car-management', [CarManagementController::class, 'index']);
+Route::get('/car-management/create', [CarManagementController::class, 'create']);
+Route::post('/car-management', [CarManagementController::class, 'store']);
+Route::get('/car-management/{car}', [CarManagementController::class, 'show']);
+Route::get('/car-management/{car}/edit', [CarManagementController::class, 'edit']);
+Route::put('/car-management/{car}', [CarManagementController::class, 'update']);
+Route::delete('/car-management/{car}', [CarManagementController::class, 'destroy']);
+Route::post('/car-management/enable-disable', [CarManagementController::class, 'enable_disable_car']);
 
 Route::get('/r/send-report-for-manager', [MessageController::class, 'send_report_for_manager']);
 Route::post('/r/send-report-for-manager', [MessageController::class, 'store_send_report_for_manager']);
