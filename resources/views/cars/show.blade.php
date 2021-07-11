@@ -42,7 +42,7 @@
 
                 @if (auth()->user()->is_customer)
                 <div class="col-md-12">
-                    <p class="font-weight-bold">Reserve a car</p>
+                    <p class="font-weight-bold">Reserve a car with CBE <strong>1000232345567</strong></p>
                     <table class="table">
                         @php
                         $total_days = \Carbon\Carbon::parse($start_date)->diffinDays(\Carbon\Carbon::parse($end_date));
@@ -101,6 +101,7 @@
                         </div>
 
                         <div class="input-group row p-2">
+                            <label for="bank_book" class="col-12 col-form-label">File attachiment</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Upload all required documents as .pdf format</span>
                             </div>

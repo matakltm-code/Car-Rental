@@ -97,7 +97,7 @@
 
                 {{-- car_status --}}
                 <div class="form-group row">
-                    <label for="editor" class="col-12 col-form-label">Room detail description</label>
+                    <label for="editor" class="col-12 col-form-label">Car detail description</label>
                     <div class="col-12">
                         <textarea name="car_status" class="editor" rows="10"
                             value="{!! old('car_status') !!}"></textarea>
