@@ -48,7 +48,16 @@
                             !!}
                         </p>
                     </p>
+                    @auth
+                    @if (auth()->user()->is_admin)
                     <a href="/car-management/{{ $car->id }}" class="btn btn-primary">Show Detail</a>
+                    @else
+                    <a href="/cars/{{ $car->id }}" class="btn btn-primary">Show Detail</a>
+                    @endif
+                    @endauth
+                    @guest
+                    <a href="/cars/{{ $car->id }}" class="btn btn-primary">Show Detail</a>
+                    @endguest
                 </div>
             </div>
         </div>

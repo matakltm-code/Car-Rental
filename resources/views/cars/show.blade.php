@@ -43,14 +43,45 @@
                 @if (auth()->user()->is_customer)
                 <div class="col-md-12">
                     <p class="font-weight-bold">Reserve a car</p>
-                    <p class="font-weight-bold h5 text-danger">Total Price: start-end*price</p>
+                    <table class="table">
+                        @php
+                        $total_days = \Carbon\Carbon::parse($start_date)->diffinDays(\Carbon\Carbon::parse($end_date));
+                        @endphp
+                        <tbody>
+                            <tr>
+                                <td>Price with driver/day</td>
+                                <td>{{ $car->price_with_driver }}</td>
+                            </tr>
+                            <tr>
+                                <td>Price with out driver/day</td>
+                                <td>{{ $car->price_with_out_driver }}</td>
+                            </tr>
+                            <tr>
+                                <td>Your total days selected</td>
+                                <td>{{ $total_days }} day</td>
+                            </tr>
+                            <tr class="bg-info">
+                                <td>Total Payment With Driver</td>
+                                <td>{{ $total_days * $car->price_with_driver }} ETB</td>
+                            </tr>
+                            <tr class="bg-info">
+                                <td>Total Payment With Out Driver</td>
+                                <td>{{ $total_days * $car->price_with_out_driver }} ETB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    {{-- <p class="font-weight-bold h6 text-danger">Total Price with driver:
+                        {{ ( \Carbon\Carbon::parse($start_date)->diffinDays(\Carbon\Carbon::parse($end_date)) ) * $car->price_with_driver}}
+                    ETB</p>
+                    <p class="font-weight-bold h6 text-danger">Total Price with out driver:
+                        {{ ( \Carbon\Carbon::parse($start_date)->diffinDays(\Carbon\Carbon::parse($end_date)) ) * $car->price_with_out_driver}}
+                        ETB</p> --}}
                     <form method="post" action="/cars" enctype="multipart/form-data">
                         @csrf
                         {{-- hidden values --}}
                         <input type="hidden" name="car_id" value="{{ $car->id }}">
                         <input type="hidden" name="start_date" value="{{ $start_date }}">
                         <input type="hidden" name="end_date" value="{{ $end_date }}">
-                        <input type="hidden" name="total_price" value="0">
 
                         <div class="form-group row">
                             <label for="bank_book" class="col-12 col-form-label">Select your driver preference</label>

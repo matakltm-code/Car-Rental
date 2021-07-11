@@ -33,13 +33,10 @@
                                 Date of birth: {{ $user->date_of_birth }}
                             </p>
                             <p class="h5 pb-1">
-                                Email: {{ $user->username }}
+                                Username: {{ $user->username }}
                             </p>
                             <p class="h5 pb-1">
                                 Email: {{ $user->email }}
-                            </p>
-                            <p class="h5 pb-1">
-                                Account status: {{ ($user->active_account == true ? 'Active' : 'Disabled') }}
                             </p>
                             <p class="h5 pb-1">
                                 User Type: {{ $user->account_type_text($user->user_type) }}

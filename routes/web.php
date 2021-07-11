@@ -10,7 +10,9 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\CarManagementController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DriverLicenseController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\NotificationController;
 use App\Models\Car;
 
 /*
@@ -79,6 +81,12 @@ Route::put('/car-management/{car}', [CarManagementController::class, 'update']);
 Route::delete('/car-management/{car}', [CarManagementController::class, 'destroy']);
 Route::post('/car-management/enable-disable', [CarManagementController::class, 'enable_disable_car']);
 
+
+Route::get('/car/r/reservation', [ReservationController::class, 'rentalofficer_reservation']);
+Route::patch('/car/r/reservation/{BookedCar}', [ReservationController::class, 'cancel_or_approve_customer_reservation']);
+Route::post('/car/r/assign-driver', [ReservationController::class, 'assign_driver']);
+
+
 Route::get('/r/send-report-for-manager', [MessageController::class, 'send_report_for_manager']);
 Route::post('/r/send-report-for-manager', [MessageController::class, 'store_send_report_for_manager']);
 Route::get('/r/report-from-manager', [MessageController::class, 'view_report_from_manager']);
@@ -91,9 +99,12 @@ Route::get('/r/report-from-driver', [MessageController::class, 'view_report_from
 
 Route::get('/d/send-report-rental-officer', [MessageController::class, 'send_report_for_rental_officer_from_driver']);
 Route::post('/d/send-report-rental-officer', [MessageController::class, 'store_send_report_for_rental_officer_from_driver']);
-
+Route::get('/notifications', [NotificationController::class, 'index']);
 
 // customer
+
+Route::get('/car/c/reservation', [ReservationController::class, 'customer_reservation']);
+Route::patch('/car/c/reservation/{BookedCar}', [ReservationController::class, 'cancel_customer_reservation']);
 
 Route::get('/c/send-feedback', [MessageController::class, 'send_feedback_for_manager']);
 Route::post('/c/send-feedback', [MessageController::class, 'store_send_feedback_for_manager']);

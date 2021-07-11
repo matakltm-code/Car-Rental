@@ -38,17 +38,14 @@ class CarController extends Controller
 
         $data = $request->validate([
             'car_id' => ['required', 'int'],
-            // 'start_date' => ['required', 'date', 'after:now'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date', 'after:start_date'],
-            'total_price' => ['required', 'integer'],
             'with_driver_or_not' => ['required'],
             'file' => ['required', 'file'],
         ]);
         //  Check the user insertes true available date : this might chage in the html or url se we must do this check
         // $car = Room::with('booked_cars')->where('id', '=', $data['car_id'])->get();
         $car = Car::findorfail($data['car_id']);
-
         // dd($car);
         // dd($car->booked_cars);
         $skip_room = false;
@@ -63,17 +60,26 @@ class CarController extends Controller
             return back()->with('error', 'Car is reserved between your selected date. <br/> Please select different date!');
         }
 
-
+        // File attachiment
         $file_path = 'storage/' . $request->file->store('uploads', 'public');
 
-        // Reserve a room
+        // Total price = total_days * price/day
+        $total_days = \Carbon\Carbon::parse($data['start_date'])->diffinDays(\Carbon\Carbon::parse($data['end_date']));
+        $total_price = 0;
+        if ($data['with_driver_or_not'] === 'true') {
+            $total_price = $total_days * $car->price_with_driver;
+        } else {
+            $total_price = $total_days * $car->price_with_out_driver;
+        }
+
+        // Reserve a car
         BookedCar::create([
             'car_id' => $data['car_id'],
             'user_id' => auth()->user()->id,
             'start_date' => $data['start_date'],
             'end_date' => $data['end_date'],
             'status' => 'pending',
-            'total_price' => $data['total_price'],
+            'total_price' => $total_price,
             'with_driver' => ($data['with_driver_or_not'] === 'true') ? true : false,
             'payment_attached_file_path' => $file_path,
         ]);

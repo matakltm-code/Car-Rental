@@ -33,10 +33,18 @@ class BookedCar extends Model
     {
         $result = '';
         if ($canceled_by == 'customer') {
-            $result = '<b class="text-danger">You canceled this reservation</b>';
+            if (auth()->user()->user_type === 'customer') {
+                $result = '<b class="text-danger">You canceled this reservation</b>';
+            } else {
+                $result = '<b class="text-danger">Cancel this reservation by owner</b>';
+            }
         }
         if ($canceled_by == 'rentalofficer') {
-            $result = '<b class="text-danger">Your reservation is canceled by our staff memeber(rental officer)</b>';
+            if (auth()->user()->user_type === 'customer') {
+                $result = '<b class="text-danger">Your reservation is canceled by our staff memeber(rental officer)</b>';
+            } else {
+                $result = '<b class="text-danger">You cancel this reservation(rental officer)</b>';
+            }
         }
 
 
@@ -51,5 +59,15 @@ class BookedCar extends Model
     public function car()
     {
         return $this->belongsTo(Car::class, 'car_id');
+    }
+
+    /**
+     * Get the driver that owns the BookedCar
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function driver()
+    {
+        return $this->belongsTo(User::class, 'driver_id', 'id');
     }
 }

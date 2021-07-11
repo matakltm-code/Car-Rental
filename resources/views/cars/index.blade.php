@@ -23,7 +23,7 @@
         </form>
     </div>
 
-    <div class="row">
+    <div class="row mb-5 pb-5">
         @if ($cars->count() > 0)
         {{-- available cheker --}}
         @php
@@ -68,8 +68,8 @@
                                 !!}
                             </p>
                         </p>
-                        {{-- <a href="/cars/{{ $car->id }}?start_date={{$start_date}}&end_date={{$end_date}}"
-                        class="btn btn-primary">Show Detail</a> --}}
+                        <a href="/cars/{{ $car->id }}?start_date={{$start_date}}&end_date={{$end_date}}"
+                            class="btn btn-primary">Show Detail</a>
                     </div>
                 </div>
             </div>

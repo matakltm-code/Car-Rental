@@ -62,8 +62,8 @@
                         <li class="nav-item <?=(Route::current()->uri() == '/' ? 'active':'')?>">
                             <a class="nav-link" href="/">{{ __('Home') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '/NAN' ? 'active':'')?>">
-                            <a class="nav-link" href="#">{{ __('Reservation History') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'car/r/reservation' ? 'active':'')?>">
+                            <a class="nav-link" href="/car/r/reservation">{{ __('Reservation History') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == 'account' ? 'active':'')?>">
                             <a class="nav-link" href="/account">{{ __('Account Management') }}</a>
@@ -93,8 +93,8 @@
                         <li class="nav-item <?=(Route::current()->uri() == 'car-management' ? 'active':'')?>">
                             <a class="nav-link" href="/car-management">{{ __('Cars Management') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Car Reservation') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'car/r/reservation' ? 'active':'')?>">
+                            <a class="nav-link" href="/car/r/reservation">{{ __('Car Reservation') }}</a>
                         </li>
                         <li
                             class="nav-item <?=(Route::current()->uri() == 'r/send-report-for-manager' ? 'active':'')?>">
@@ -110,8 +110,8 @@
                         <li class="nav-item <?=(Route::current()->uri() == '/' ? 'active':'')?>">
                             <a class="nav-link" href="/">{{ __('Home') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Notifications') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'notifications' ? 'active':'')?>">
+                            <a class="nav-link" href="/notifications">{{ __('Notifications') }}</a>
                         </li>
                         <li
                             class="nav-item <?=(Route::current()->uri() == 'd/send-report-rental-officer' ? 'active':'')?>">
@@ -124,8 +124,8 @@
                         <li class="nav-item <?=(Route::current()->uri() == 'cars' ? 'active':'')?>">
                             <a class="nav-link" href="/cars">{{ __('Cars') }}</a>
                         </li>
-                        <li class="nav-item <?=(Route::current()->uri() == '#' ? 'active':'')?>">
-                            <a class="nav-link" href="/#">{{ __('Reserved Cars') }}</a>
+                        <li class="nav-item <?=(Route::current()->uri() == 'car/c/reservation' ? 'active':'')?>">
+                            <a class="nav-link" href="/car/c/reservation">{{ __('Reserved Cars') }}</a>
                         </li>
                         <li class="nav-item <?=(Route::current()->uri() == 'c/send-feedback' ? 'active':'')?>">
                             <a class="nav-link" href="/c/send-feedback">{{ __('Send Feedback') }}</a>

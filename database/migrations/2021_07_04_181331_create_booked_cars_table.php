@@ -26,7 +26,7 @@ class CreateBookedCarsTable extends Migration
             $table->decimal('total_price')->nullable(); // (start_date - end_date) * price/day
             $table->boolean('with_driver')->default(false);
             $table->text('payment_attached_file_path')->nullable();
-            $table->boolean('driver_id')->nullable(); // if user select with driver the the Rental officer will assign driver to this user
+            $table->integer('driver_id')->nullable(); // if user select with driver the the Rental officer will assign driver to this user
             $table->timestamps();
         });
     }
