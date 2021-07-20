@@ -93,7 +93,7 @@ class ReservationController extends Controller
         ];
 
         $BookedCar->update($data);
-        return back()->with('success', 'Success: Our receptionist staff memeber will return your money by using your bank account. <strong>Our staff memebers take 72 hours to return you money!</strong>');
+        return back()->with('success', 'Success: Our rental officer will return your money by using your bank account. <strong>Our staff memebers take 72 hours to return you money!</strong>');
     }
 
     /**

@@ -40,6 +40,7 @@ class CarController extends Controller
             'car_id' => ['required', 'int'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date', 'after:start_date'],
+            'trf' => ['required', 'unique:Booked_cars,trf'],
             'with_driver_or_not' => ['required'],
             'file' => ['required', 'file'],
         ]);
@@ -50,10 +51,12 @@ class CarController extends Controller
         // dd($car->booked_cars);
         $skip_room = false;
         foreach ($car->booked_cars as $booked_car) {
-            if ($this->checkDateIsAvailableForReservation($data['start_date'], $data['end_date'], $booked_car->start_date, $booked_car->end_date)) {
-                $skip_room = false;
-            } else {
-                $skip_room = true;
+            if ($booked_car->status != 'cancel') {
+                if ($this->checkDateIsAvailableForReservation($data['start_date'], $data['end_date'], $booked_car->start_date, $booked_car->end_date)) {
+                    $skip_room = false;
+                } else {
+                    $skip_room = true;
+                }
             }
         }
         if ($skip_room) {
@@ -80,6 +83,7 @@ class CarController extends Controller
             'end_date' => $data['end_date'],
             'status' => 'pending',
             'total_price' => $total_price,
+            'trf' => $data['trf'],
             'with_driver' => ($data['with_driver_or_not'] === 'true') ? true : false,
             'payment_attached_file_path' => $file_path,
         ]);

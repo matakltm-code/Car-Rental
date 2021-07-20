@@ -34,6 +34,7 @@
         if ($start_date <= $db_end_date) return false; return true; } @endphp @foreach ($cars as $car) @php
             $skip_car=false; if($start_date !='' && $end_date !='' & !empty($start_date) && !empty($end_date)){ foreach
             ($car->booked_cars as $booked_car) {
+            if ($booked_car->status != 'cancel') {
             if (checkDateIsAvailableForReservation($start_date, $end_date, $booked_car->start_date,
             $booked_car->end_date)) {
             $skip_car = false;
@@ -41,6 +42,7 @@
             // This car is reserved so we skip this car
             $skip_car = true;
             } // else
+            }
             } // foreach ($car->booked_cars as $booked_car) {
             } // end of if($start_date != '' && $end_date != '' & !empty($start_date) && !empty($end_date)){
             // if not available then skip the car

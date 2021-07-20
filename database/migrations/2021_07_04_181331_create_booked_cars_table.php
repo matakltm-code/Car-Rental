@@ -23,6 +23,7 @@ class CreateBookedCarsTable extends Migration
             $table->string('status')->default('pending'); // pending, approved, cancel
             $table->string('cancel_by')->nullable(); // customer, rentalofficer
             // $table->string('bank_book'); // customer, rentalofficer
+            $table->string('trf')->unique();
             $table->decimal('total_price')->nullable(); // (start_date - end_date) * price/day
             $table->boolean('with_driver')->default(false);
             $table->text('payment_attached_file_path')->nullable();

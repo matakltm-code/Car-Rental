@@ -100,6 +100,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="trf" class="col-12 col-form-label">TRF - Bank recepet trf number</label>
+                            <div class="col-12">
+                                <input value="{{ old('trf') }}" id="trf" name="trf"
+                                    placeholder="Enter your bank recept transaction number"
+                                    class="form-control  @error('trf') is-invalid @enderror" type="text">
+                                @error('trf')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="input-group row p-2">
                             <label for="bank_book" class="col-12 col-form-label">File attachiment</label>
                             <div class="input-group-prepend">

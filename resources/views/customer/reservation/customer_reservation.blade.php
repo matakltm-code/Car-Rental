@@ -37,6 +37,7 @@
                                     Uploaded File: <a href="/{{$booked_car->payment_attached_file_path}}"
                                         target="_blank" rel="noopener noreferrer">See or Download</a> <br>
                                     Total Payment: {{ $booked_car->total_price }} <br>
+                                    Your TRF Number: {{ $booked_car->trf }} <br>
                                     Status: {!! $booked_car->car_status_text($booked_car->status) !!}
                                 </td>
                                 <td>{{ $booked_car->created_at->diffForHumans() }}</td>
